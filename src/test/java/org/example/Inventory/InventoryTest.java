@@ -13,36 +13,35 @@ public class InventoryTest {
     @BeforeEach
     void setUp() {
         inventory = new Inventory();
-        product = new Product("Hammer", 12.99, 10);
+        product = new Product("Hammer", 12.99, 7);
         product.setProductId("prod-001");
         inventory.addProduct(product);
     }
 
     @Test
     void addAndGetProduct() {
-        Product retrieved = inventory.getProduct("prod-001");
-        assertNotNull(retrieved);
-        assertEquals("Hammer", retrieved.getProductName());
+        Product getHammerUsingID = inventory.getProduct("prod-001");
+        assertEquals("Hammer", getHammerUsingID.getProductName());
     }
 
     @Test
     void updateQuantity() {
+        assertEquals(7, product.getQuantity());
         inventory.updateQuantity("prod-001", 25);
-        Product updated = inventory.getProduct("prod-001");
-        assertEquals(25, updated.getQuantity());
+        inventory.getProduct("prod-001");
+        assertEquals(25, product.getQuantity());
     }
 
     @Test
     void getAllProducts() {
-        Map<String, Product> all = inventory.getAllProducts();
-        assertEquals(1, all.size());
-        assertTrue(all.containsKey("prod-001"));
+        Map<String, Product> allProducts = inventory.getAllProducts();
+        assertEquals(1, allProducts.size());
+        assertTrue(allProducts.containsKey("prod-001"));
     }
 
     @Test
     void updateNonExistantProduct() {
         inventory.updateQuantity("product-does-not-exist", 20);
-        // No exception should occur; nothing is updated
         assertNull(inventory.getProduct("product-does-not-exist"));
     }
 }
