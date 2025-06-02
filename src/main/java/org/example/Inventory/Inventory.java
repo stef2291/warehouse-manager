@@ -12,9 +12,11 @@ public class Inventory {
 
     public void addProduct(Product product) {
         productTracker.put(product.getProductId(), product);
+        System.out.println("Product :: " + productTracker.get(product.getProductId()).getProductName());
     }
 
     public Product getProduct(String productId) {
+        System.out.println("Product ID :: " + productId);
         return productTracker.get(productId);
     }
 

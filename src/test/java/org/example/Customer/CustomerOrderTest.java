@@ -27,7 +27,7 @@ public class CustomerOrderTest {
     }
 
     @Test
-    void customerOrderCreation_initializesCorrectly() {
+    void customerOrderCreation() {
 
         assertNotNull(order.getOrderId());
         assertEquals(CustomerOrder.Status.PENDING, order.getStatus());
