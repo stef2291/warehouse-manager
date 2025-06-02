@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomerOrderProductTest {
     @Test
-    void create_customerOrderProduct() {
+    void createCustomerOrderProduct() {
         Product product = new Product("Mouse", 15.0, 50, 100);
         CustomerOrderProduct item = new CustomerOrderProduct(product, 3);
 

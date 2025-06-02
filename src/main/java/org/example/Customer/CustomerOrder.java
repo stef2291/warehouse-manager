@@ -14,7 +14,7 @@ public class CustomerOrder {
     private Status status;
 
     public enum Status {
-        PENDING, APPROVED, SHIPPED, DELIVERED, CANCELLED
+        PENDING, APPROVED, SHIPPED, PARTIAL , DELIVERED, CANCELLED
     }
 
     public CustomerOrder(Customer customer) {
