@@ -1,8 +1,11 @@
 package org.example.Inventory;
 
 import org.example.Supplier.Product;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 public class Inventory {
     private Map<String, Product> productTracker = new HashMap<>();
@@ -24,5 +27,15 @@ public class Inventory {
 
     public Map<String, Product> getAllProducts() {
         return productTracker;
+    }
+
+    public List<Product> lowStockAlert() {
+        List<Product> lowStock = new ArrayList<>();
+        for (Product product : productTracker.values()) {
+            if (product.getQuantity() <= product.getThreshold()) {
+                lowStock.add(product);
+            }
+        }
+        return lowStock;
     }
 }

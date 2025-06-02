@@ -8,7 +8,7 @@ public class ProductTest {
 
     @Test
     void testProductFields() {
-        Product product = new Product("Drill", 50.0, 10);
+        Product product = new Product("Drill", 50.0, 10, 11);
         product.setProductId("123");
 
         assertEquals("123", product.getProductId());

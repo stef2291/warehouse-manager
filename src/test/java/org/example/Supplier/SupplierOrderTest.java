@@ -16,7 +16,7 @@ public class SupplierOrderTest {
         assertEquals(SupplierOrder.Status.PENDING, order.getStatus());
         assertEquals(supplier, order.getSupplier());
 
-        Product product = new Product("Screw", 0.10, 100);
+        Product product = new Product("Screw", 0.10, 100, 200);
         SupplierOrderProduct sop = new SupplierOrderProduct(product, 20);
 
         order.addProducts(sop);
@@ -39,7 +39,7 @@ public class SupplierOrderTest {
     void testToStringOutput() {
         Supplier supplier = new Supplier("Wickes", "222", "w@ks.com", "St Lane");
         SupplierOrder order = new SupplierOrder(supplier);
-        Product product = new Product("Bolt", 0.20, 50);
+        Product product = new Product("Bolt", 0.20, 50, 40);
         SupplierOrderProduct sop = new SupplierOrderProduct(product, 5);
         order.addProducts(sop);
 

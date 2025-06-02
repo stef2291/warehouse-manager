@@ -1,10 +1,20 @@
 package org.example.Supplier;
 import org.example.Supplier.Product;
 import org.example.Supplier.Supplier;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class SupplierTest {
+    Product product;
+    Supplier supplier;
+
+    @BeforeEach
+    void setUp() {
+        supplier = new Supplier("Primark", "0123", "email", "addr");
+        product = new Product("Hammer", 10.0, 5, 10);
+    }
     @Test
     void testSupplierName() {
         Supplier newSupplier = new Supplier("Primark", "020111222", "primark@gmail.com", "22 Primark Avenue");
@@ -23,18 +33,13 @@ public class SupplierTest {
 
     @Test
     void testAddProduct() {
-        Supplier supplier = new Supplier("Primark", "0123", "email", "addr");
-        Product product = new Product("Hammer", 10.0, 5);
         supplier.addProduct(product);
-
         assertEquals(5, supplier.getProductsList(0).getQuantity());
         assertTrue(supplier.getProductsList(0).getProductId().contains("Hammer"));
     }
 
     @Test
     void testRemoveProduct() {
-        Supplier supplier = new Supplier("Primark", "0123", "email", "addr");
-        Product product = new Product("Hammer", 10.0, 5);
         supplier.addProduct(product);
         supplier.removeProduct(product);
 
@@ -43,7 +48,6 @@ public class SupplierTest {
 
     @Test
     void testGetContactInfoByType() {
-        Supplier supplier = new Supplier("Primark", "0123", "email", "addr");
         assertEquals("email", supplier.getContactInfo(Supplier.ContactDetails.EMAIL));
         assertEquals("0123", supplier.getContactInfo(Supplier.ContactDetails.PHONE));
         assertEquals("addr", supplier.getContactInfo(Supplier.ContactDetails.ADDRESS));

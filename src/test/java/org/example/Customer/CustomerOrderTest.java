@@ -17,7 +17,7 @@ public class CustomerOrderTest {
     @BeforeEach
     public void setUp() {
         customer = new Customer("John Doe", "john@example.com", "1234567890", "22 Acacia Ave");
-        product = new Product("Tshirt", 9.99, 3);
+        product = new Product("Tshirt", 9.99, 3, 20);
         orderProduct = new CustomerOrderProduct(product, 2);
         order = new CustomerOrder(customer);
     }

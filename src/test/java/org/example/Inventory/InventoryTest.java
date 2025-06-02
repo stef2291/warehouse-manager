@@ -3,6 +3,7 @@ package org.example.Inventory;
 import org.example.Supplier.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +14,7 @@ public class InventoryTest {
     @BeforeEach
     void setUp() {
         inventory = new Inventory();
-        product = new Product("Hammer", 12.99, 7);
+        product = new Product("Hammer", 12.99, 7, 5);
         product.setProductId("prod-001");
         inventory.addProduct(product);
     }
@@ -44,4 +45,18 @@ public class InventoryTest {
         inventory.updateQuantity("product-does-not-exist", 20);
         assertNull(inventory.getProduct("product-does-not-exist"));
     }
+
+    @Test
+    void lowStockAlert() {
+        Product productInLowStock = new Product("Shoes", 40, 2, 5);
+        Product productInHighStock = new Product("Plates", 1.99, 30, 8);
+        inventory.addProduct(productInHighStock);
+
+        List<Product> lowStockList1 = inventory.lowStockAlert();
+        assertTrue(lowStockList1.isEmpty());
+
+        inventory.addProduct(productInLowStock);
+        List<Product> lowStockList2 = inventory.lowStockAlert();
+        assertEquals(1, lowStockList2.size());
+        assertEquals("Shoes", lowStockList2.get(0).getProductName());    }
 }
