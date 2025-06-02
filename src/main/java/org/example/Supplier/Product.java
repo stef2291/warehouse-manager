@@ -5,11 +5,13 @@ public class Product {
     private String productName;
     private double price;
     private int quantity;
+    private int threshold;
 
-    public Product(String productName, double price, int quantity) {
+    public Product(String productName, double price, int quantity, int threshold) {
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
+        this.threshold = threshold;
     }
 
     public String getProductId() {
@@ -18,6 +20,14 @@ public class Product {
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public int getThreshold() {
+        return this.threshold;
+    }
+
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
     }
 
     public String getProductName() {
