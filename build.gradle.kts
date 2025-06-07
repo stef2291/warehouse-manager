@@ -1,5 +1,6 @@
 plugins {
-    id("java")
+    java
+    application
 }
 
 group = "org.example"
@@ -16,4 +17,21 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.register<JavaExec>("manualRun") {
+    group = "application"
+    description = "Runs Main class"
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("org.example.Main")
+    standardInput = System.`in`
+}
+
+tasks.register<JavaExec>("loadStubs") {
+    group = "testing"
+    description = "Create dummy data for testing purposes"
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("org.example.Main")
+    args("createStubs")
+    standardInput = System.`in`
 }

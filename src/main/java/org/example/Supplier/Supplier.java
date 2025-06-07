@@ -34,6 +34,10 @@ public class Supplier {
         return this.contactInfo.toString();
     }
 
+    public ContactInfo updateContactInfo() {
+        return this.contactInfo;
+    }
+
     public String getContactInfo(ContactDetails type) {
         switch (type) {
 
