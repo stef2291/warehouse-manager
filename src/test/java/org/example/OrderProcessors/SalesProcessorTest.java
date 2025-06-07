@@ -2,7 +2,7 @@ package org.example.OrderProcessors;
 import org.example.Customer.Customer;
 import org.example.Customer.CustomerOrder;
 import org.example.Customer.CustomerOrderProduct;
-import org.example.Inventory.Inventory;
+import org.example.Database.Inventory;
 import org.example.Supplier.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

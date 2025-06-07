@@ -1,6 +1,6 @@
 package org.example.OrderProcessors;
 
-import org.example.Inventory.Inventory;
+import org.example.Database.Inventory;
 import org.example.Supplier.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

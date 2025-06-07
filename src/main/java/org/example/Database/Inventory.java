@@ -1,4 +1,4 @@
-package org.example.Inventory;
+package org.example.Database;
 
 import org.example.Supplier.Product;
 

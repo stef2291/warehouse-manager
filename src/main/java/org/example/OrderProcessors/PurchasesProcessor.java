@@ -1,6 +1,6 @@
 package org.example.OrderProcessors;
 
-import org.example.Inventory.Inventory;
+import org.example.Database.Inventory;
 import org.example.Supplier.*;
 import java.util.ArrayList;
 import java.util.List;
