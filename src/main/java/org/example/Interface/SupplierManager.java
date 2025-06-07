@@ -1,4 +1,5 @@
 package org.example.Interface;
+import org.example.Database.SupplierInformation;
 import org.example.Supplier.Supplier;
 
 import java.util.ArrayList;
@@ -7,7 +8,11 @@ import java.util.Scanner;
 
 public class SupplierManager {
     private final Scanner scanner = new Scanner(System.in);
-    private final List<Supplier> supplierList= new ArrayList<>();
+    private final SupplierInformation supplierInfo;
+
+    public SupplierManager(SupplierInformation supplierInfo) {
+        this.supplierInfo = supplierInfo;
+    }
 
     public void run() {
         while (true) {
@@ -33,6 +38,7 @@ public class SupplierManager {
     }
 
     private void viewSuppliers() {
+        List<Supplier> supplierList = supplierInfo.getAllSuppliers();
         if (supplierList.isEmpty()) {
             System.out.println("No suppliers found.");
             return;
@@ -57,12 +63,13 @@ public class SupplierManager {
         String address = scanner.nextLine();
 
         Supplier supplier = new Supplier(name, phone, email, address);
-        supplierList.add(supplier);
+        supplierInfo.addSupplier(supplier);
         System.out.println("Supplier added: " + supplier.getName());
     }
 
     private void deleteSupplier() {
         viewSuppliers();
+        List<Supplier> supplierList = supplierInfo.getAllSuppliers();
         if (supplierList.isEmpty()) return;
 
         System.out.print("Enter supplier number to delete: ");
@@ -73,6 +80,7 @@ public class SupplierManager {
         }
 
         Supplier removed = supplierList.remove(index);
+        supplierInfo.removeSupplier(index);
         System.out.println("Removed supplier: " + removed.getName());
     }
 
@@ -89,6 +97,8 @@ public class SupplierManager {
 
     private void modifySupplier() {
         viewSuppliers();
+        List<Supplier> supplierList = supplierInfo.getAllSuppliers();
+
         if (supplierList.isEmpty()) return;
 
         System.out.print("Enter supplier number to modify: ");

@@ -1,18 +1,21 @@
 package org.example.Interface;
 
 import org.example.Database.Inventory;
+import org.example.Database.SupplierInformation;
 import org.example.OrderProcessors.PurchasesProcessor;
 import org.example.OrderProcessors.SalesProcessor;
 import java.util.Scanner;
 
 public class UserInterface {
     private final Inventory inventory;
+    private final SupplierInformation supplierInformation;
     private final PurchasesProcessor purchasesProcessor;
     private final SalesProcessor salesProcessor;
     private final Scanner scanner = new Scanner(System.in);
 
-    public UserInterface(Inventory inventory) {
+    public UserInterface(Inventory inventory, SupplierInformation supplierInformation) {
         this.inventory = inventory;
+        this.supplierInformation = supplierInformation;
         this.purchasesProcessor = new PurchasesProcessor(inventory);
         this.salesProcessor = new SalesProcessor(inventory);
     }
@@ -44,7 +47,7 @@ public class UserInterface {
     }
 
     private void manageSuppliers() {
-        SupplierManager sm = new SupplierManager();
+        SupplierManager sm = new SupplierManager(supplierInformation);
         sm.run();
     }
 

@@ -11,15 +11,15 @@ public class Inventory {
     private Map<String, Product> productTracker = new HashMap<>();
 
     public void addProduct(Product product) {
-        productTracker.put(product.getProductId(), product);
+        productTracker.put(product.getProductName(), product);
     }
 
-    public Product getProduct(String productId) {
-        return productTracker.get(productId);
+    public Product getProduct(String productName) {
+        return productTracker.get(productName);
     }
 
-    public void updateQuantity(String productId, int quantity) {
-        Product product = productTracker.get(productId);
+    public void updateQuantity(String productName, int quantity) {
+        Product product = productTracker.get(productName);
         if (product != null) {
             product.setQuantity(quantity);
         }

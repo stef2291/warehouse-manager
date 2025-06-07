@@ -1,12 +1,14 @@
 package org.example.Stubs;
 
 import org.example.Database.Inventory;
+import org.example.Database.SupplierInformation;
 import org.example.Supplier.*;
 
 public class StubData {
 
-    public static void populate(Inventory inventory) {
+    public static void populate(Inventory inventory, SupplierInformation supplierInformation) {
         Supplier Primark = new Supplier("Primark", "123-456-7890", "primark@example.com", "Primark Address");
+        supplierInformation.addSupplier(Primark);
 
         Product t_shirt = new Product("T-shirt", 447.09, 15, 19);
         Primark.addProduct(t_shirt);
@@ -29,6 +31,7 @@ public class StubData {
         inventory.addProduct(hat);
 
         Supplier Screwfix = new Supplier("Screwfix", "123-456-7890", "screwfix@example.com", "Screwfix Address");
+        supplierInformation.addSupplier(Screwfix);
 
         Product hammer = new Product("Hammer", 117.98, 33, 18);
         Screwfix.addProduct(hammer);
@@ -51,6 +54,7 @@ public class StubData {
         inventory.addProduct(saw);
 
         Supplier PCWorld = new Supplier("PC World", "123-456-7890", "pcworld@example.com", "PC World Address");
+        supplierInformation.addSupplier(PCWorld);
 
         Product laptop = new Product("Laptop", 463.49, 42, 10);
         PCWorld.addProduct(laptop);
