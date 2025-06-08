@@ -21,15 +21,15 @@ public class InventoryTest {
 
     @Test
     void addAndGetProduct() {
-        Product getHammerUsingID = inventory.getProduct("prod-001");
-        assertEquals("Hammer", getHammerUsingID.getProductName());
+        Product getHammer = inventory.getProduct("Hammer");
+        assertEquals("Hammer", getHammer.getProductName());
     }
 
     @Test
     void updateQuantity() {
         assertEquals(7, product.getQuantity());
-        inventory.updateQuantity("prod-001", 25);
-        inventory.getProduct("prod-001");
+        inventory.updateQuantity("Hammer", 25);
+        inventory.getProduct("Hammer");
         assertEquals(25, product.getQuantity());
     }
 
@@ -37,7 +37,7 @@ public class InventoryTest {
     void getAllProducts() {
         Map<String, Product> allProducts = inventory.getAllProducts();
         assertEquals(1, allProducts.size());
-        assertTrue(allProducts.containsKey("prod-001"));
+        assertTrue(allProducts.containsKey("Hammer"));
     }
 
     @Test

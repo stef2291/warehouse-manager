@@ -2,7 +2,6 @@ package org.example.Interface;
 import org.example.Database.SupplierInformation;
 import org.example.Supplier.Supplier;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -73,7 +72,7 @@ public class SupplierManager {
         if (supplierList.isEmpty()) return;
 
         System.out.print("Enter supplier number to delete: ");
-        int index = Integer.parseInt(scanner.nextLine()) - 1;
+        int index = promptForInteger() - 1;
         if (index < 0 || index >= supplierList.size()) {
             System.out.println("Invalid index.");
             return;
@@ -102,7 +101,7 @@ public class SupplierManager {
         if (supplierList.isEmpty()) return;
 
         System.out.print("Enter supplier number to modify: ");
-        int index = Integer.parseInt(scanner.nextLine()) - 1;
+        int index = promptForInteger() - 1;
         if (index < 0 || index >= supplierList.size()) {
             System.out.println("Invalid index.");
             return;
@@ -123,5 +122,16 @@ public class SupplierManager {
         if(newAddress != null) s.updateContactInfo().setAddress(newAddress);
 
         System.out.println("Supplier updated.");
+    }
+
+    public int promptForInteger() {
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.nextLine());
+
+            }catch (NumberFormatException error) {
+                System.out.println("Invalid number. Please enter a valid decimal number.");
+            }
+        }
     }
 }

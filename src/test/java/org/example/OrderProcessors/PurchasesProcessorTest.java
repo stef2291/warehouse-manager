@@ -23,8 +23,7 @@ public class PurchasesProcessorTest {
         wrench = new Product("Wrench", 5.0, 0, 5);
         supplier.addProduct(hammer);
         supplier.addProduct(wrench);
-        hammer.setProductId("prod-001");
-        wrench.setProductId("prod-002");
+
 
         order = new SupplierOrder(supplier);
         order.addProducts(new SupplierOrderProduct(hammer, 10));
@@ -38,8 +37,8 @@ public class PurchasesProcessorTest {
         processor.processOrder(order);
 
         assertEquals(2, inventory.getAllProducts().size());
-        assertEquals(10, inventory.getProduct("prod-001").getQuantity());
-        assertEquals(20, inventory.getProduct("prod-002").getQuantity());
+        assertEquals(10, inventory.getProduct("Hammer").getQuantity());
+        assertEquals(20, inventory.getProduct("Wrench").getQuantity());
         assertEquals(10 * 10.0 + 20 * 5.0, processor.getTotalPurchaseCost(), 0.01);
         assertEquals(SupplierOrder.Status.RECEIVED, order.getStatus());
     }

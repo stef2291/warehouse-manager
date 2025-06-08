@@ -14,6 +14,28 @@ public class InventoryManager {
         this.inventory = inventory;
     }
 
+    public double promptForDouble() {
+        while (true) {
+            try {
+                return Double.parseDouble(scanner.nextLine());
+
+            }catch (NumberFormatException error) {
+                System.out.println("Invalid number. Please enter a valid decimal number.");
+            }
+        }
+    }
+
+    public int promptForInteger() {
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.nextLine());
+
+            }catch (NumberFormatException error) {
+                System.out.println("Invalid number. Please enter a valid decimal number.");
+            }
+        }
+    }
+
     public void run() {
         while (true) {
             System.out.println("\n--- Inventory Management ---");
@@ -52,17 +74,26 @@ public class InventoryManager {
     }
 
     private void addProduct() {
+
+        double price;
+        int quantity;
+        int threshold;
+
         System.out.print("Enter product name: ");
         String name = scanner.nextLine();
+        if(inventory.getAllProducts().containsKey(name)) {
+            System.out.println("Product " + name + " already exists, select option number 3 (Modify Product) if you would like to modify the existing entry");
+            return;
+        }
 
         System.out.print("Enter price: ");
-        double price = Double.parseDouble(scanner.nextLine());
+        price = promptForDouble();
 
         System.out.print("Enter quantity: ");
-        int quantity = Integer.parseInt(scanner.nextLine());
+        quantity = promptForInteger();
 
         System.out.print("Enter stock threshold: ");
-        int threshold = Integer.parseInt(scanner.nextLine());
+        threshold = promptForInteger();
 
         Product product = new Product(name, price, quantity, threshold);
         inventory.addProduct(product);
@@ -71,7 +102,7 @@ public class InventoryManager {
     }
 
     private void modifyProduct() {
-        System.out.print("Enter product ID: ");
+        System.out.print("Enter product Name: ");
         String productId = scanner.nextLine();
 
         Product product = inventory.getProduct(productId);
@@ -84,13 +115,13 @@ public class InventoryManager {
         product.setProductName(scanner.nextLine());
 
         System.out.print("Enter new price (current: " + product.getPrice() + "): ");
-        product.setPrice(Double.parseDouble(scanner.nextLine()));
+        product.setPrice(promptForDouble());
 
         System.out.print("Enter new quantity (current: " + product.getQuantity() + "): ");
-        inventory.updateQuantity(product.getProductId(), Integer.parseInt(scanner.nextLine()));
+        product.setQuantity(promptForInteger());
 
         System.out.print("Enter new threshold (current: " + product.getThreshold() + "): ");
-        product.setThreshold(Integer.parseInt(scanner.nextLine()));
+        product.setThreshold(promptForInteger());
 
         System.out.println("Product updated.");
     }
@@ -104,7 +135,7 @@ public class InventoryManager {
             for (Product p : lowStock) {
                 System.out.println(p.getProductName());
                 System.out.println("£ " + p.getPrice() + " per item");
-                System.out.println("Only " + p.getQuantity() + " " + p.getProductName() + "s left in stock!" + " The stock should always be above " + p.getThreshold() +  ". Would you like to create an order?");
+                System.out.println("Only " + p.getQuantity() + " " + p.getProductName() + "s left in stock!" + " The stock should always be above " + p.getThreshold() +  ".");
             }
         }
     }

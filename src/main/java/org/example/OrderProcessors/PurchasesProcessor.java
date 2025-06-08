@@ -20,24 +20,25 @@ public class PurchasesProcessor {
         }
 
         for (SupplierOrderProduct orderProduct : order.getProducts()) {
-            Product newProduct = findProductByName(order.getSupplier(), orderProduct.getProduct());
+            Product productFromSupplierList = findProductByName(order.getSupplier(), orderProduct.getProduct());
 
-            if (newProduct == null) {
+            if (productFromSupplierList == null) {
                 System.out.println("Product not found in supplier's catalog: " + orderProduct.getProduct());
                 continue;
             }
 
-            Product inventoryProduct = inventory.getProduct(newProduct.getProductId());
+            Product inventoryProduct = inventory.getProduct(productFromSupplierList.getProductName());
             if (inventoryProduct != null) {
                 int updatedQuantity = inventoryProduct.getQuantity() + orderProduct.getQuantity();
-                inventory.updateQuantity(newProduct.getProductId(), updatedQuantity);
+                inventory.updateQuantity(productFromSupplierList.getProductName(), updatedQuantity);
+
             } else {
-                Product copy = new Product(newProduct.getProductName(), newProduct.getPrice(), orderProduct.getQuantity(), newProduct.getThreshold());
-                copy.setProductId(newProduct.getProductId());
-                inventory.addProduct(copy);
+                Product newProductInInventory = new Product(productFromSupplierList.getProductName(), productFromSupplierList.getPrice(), orderProduct.getQuantity(), productFromSupplierList.getThreshold());
+                newProductInInventory.setProductId(productFromSupplierList.getProductId());
+                inventory.addProduct(newProductInInventory);
             }
 
-            totalPurchaseCost += newProduct.getPrice() * orderProduct.getQuantity();
+            totalPurchaseCost += productFromSupplierList.getPrice() * orderProduct.getQuantity();
         }
 
         order.setStatus(SupplierOrder.Status.RECEIVED);

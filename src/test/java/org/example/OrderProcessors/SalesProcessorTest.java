@@ -36,7 +36,7 @@ public class SalesProcessorTest {
 
         salesProcessor.processOrder(order);
 
-        assertEquals(15, inventory.getProduct("hammer-001").getQuantity());
+        assertEquals(15, inventory.getProduct("Hammer").getQuantity());
         assertEquals(50.0, salesProcessor.getTotalSalesRevenue(), 0.001);
         assertEquals(CustomerOrder.Status.SHIPPED, order.getStatus());
         assertEquals(1, salesProcessor.getProcessedOrders().size());
@@ -50,8 +50,8 @@ public class SalesProcessorTest {
 
         salesProcessor.processOrder(order);
 
-        assertEquals(20, inventory.getProduct("hammer-001").getQuantity());
-        assertEquals(15, inventory.getProduct("wrench-001").getQuantity());
+        assertEquals(20, inventory.getProduct("Hammer").getQuantity());
+        assertEquals(15, inventory.getProduct("Wrench").getQuantity());
         assertEquals(150, salesProcessor.getTotalSalesRevenue(), 0.001);
         assertEquals(CustomerOrder.Status.PARTIAL, order.getStatus());
         assertEquals(1, salesProcessor.getProcessedOrders().size());
@@ -65,8 +65,8 @@ public class SalesProcessorTest {
 
         salesProcessor.processOrder(order);
 
-        assertEquals(20, inventory.getProduct("hammer-001").getQuantity());
-        assertEquals(45, inventory.getProduct("wrench-001").getQuantity());
+        assertEquals(20, inventory.getProduct("Hammer").getQuantity());
+        assertEquals(45, inventory.getProduct("Wrench").getQuantity());
         assertEquals(0, salesProcessor.getTotalSalesRevenue(), 0.001);
         assertEquals(CustomerOrder.Status.CANCELLED, order.getStatus());
         assertEquals(0, salesProcessor.getProcessedOrders().size());
@@ -74,7 +74,7 @@ public class SalesProcessorTest {
 
     @Test
     void unknownProduct() {
-        Product unknown = new Product("Banana", 15.0, 1, 1);
+        Product unknown = new Product("Unknown", 15.0, 1, 1);
         unknown.setProductId("unknown-001");
         CustomerOrder order = new CustomerOrder(customer);
         order.addProduct(new CustomerOrderProduct(unknown, 1));

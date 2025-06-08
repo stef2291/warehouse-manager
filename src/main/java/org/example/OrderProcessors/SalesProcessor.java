@@ -23,7 +23,7 @@ public class SalesProcessor {
         }
 
         for (CustomerOrderProduct orderProduct : order.getProducts()) {
-            Product product = inventory.getProduct(orderProduct.getProduct().getProductId());
+            Product product = inventory.getProduct(orderProduct.getProduct().getProductName());
 
             if (product == null) {
                 System.out.println("Order failed: Product " + orderProduct.getProduct().getProductName() + " not recognised");
@@ -37,7 +37,7 @@ public class SalesProcessor {
             }
 
             int updatedQuantity = product.getQuantity() - orderProduct.getQuantity();
-            inventory.updateQuantity(product.getProductId(), updatedQuantity);
+            inventory.updateQuantity(product.getProductName(), updatedQuantity);
             totalSalesRevenue += product.getPrice() * orderProduct.getQuantity();
         }
 

@@ -20,7 +20,6 @@ public class SupplierOrder {
         this.status = Status.PENDING;
     }
 
-
     public String getOrderId() {
         return this.orderId;
     }

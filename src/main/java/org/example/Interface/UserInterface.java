@@ -57,13 +57,13 @@ public class UserInterface {
     }
 
     private void processSupplierOrder() {
-        // TODO: Simulate or prompt user to enter Supplier Order details and pass to PurchasesProcessor
-        System.out.println("Processing supplier order...");
+        PurchasesManager pp = new PurchasesManager(supplierInformation ,inventory);
+        pp.run();
     }
 
     private void processCustomerOrder() {
-        // TODO: Simulate or prompt user to enter Customer Order details and pass to SalesProcessor
-        System.out.println("Processing customer order...");
+        SalesManager sm = new SalesManager(inventory, salesProcessor);
+        sm.run();
     }
 
 }
