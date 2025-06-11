@@ -1,23 +1,24 @@
 package org.example.Interface;
 
-import org.example.Customer.Customer;
-import org.example.Customer.CustomerOrder;
-import org.example.Customer.CustomerOrderProduct;
+import org.example.People.Customer;
+import org.example.Orders.CustomerOrder;
+import org.example.ProductManagement.CustomerOrderProduct;
 import org.example.Database.Inventory;
 import org.example.OrderProcessors.SalesProcessor;
-import org.example.Supplier.Product;
+import org.example.ProductManagement.Product;
 
 import java.util.Scanner;
 
-public class SalesManager {
+public class SalesManager extends Manager {
     private final Inventory inventory;
     private final SalesProcessor salesProcessor;
-    private final Scanner scanner = new Scanner(System.in);
 
-    public SalesManager(Inventory inventory, SalesProcessor salesProcessor) {
+    public SalesManager(Inventory inventory, SalesProcessor salesProcessor, Scanner scanner) {
+        super(scanner);
         this.inventory = inventory;
         this.salesProcessor = salesProcessor;
     }
+    @Override
     public void run() {
         while (true) {
             System.out.println("\n--- Sales Management ---");
@@ -65,7 +66,7 @@ public class SalesManager {
             System.out.print("Enter quantity: ");
             int quantity;
             try {
-                quantity = Integer.parseInt(scanner.nextLine());
+                quantity = promptForInteger();
             } catch (NumberFormatException e) {
                 System.out.println("Invalid quantity.");
                 continue;
@@ -96,5 +97,4 @@ public class SalesManager {
 
         System.out.printf("Total Sales Revenue: £%.2f\n", salesProcessor.getTotalSalesRevenue());
     }
-
 }

@@ -1,18 +1,19 @@
 package org.example.Interface;
 import org.example.Database.SupplierInformation;
-import org.example.Supplier.Supplier;
+import org.example.People.Supplier;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class SupplierManager {
-    private final Scanner scanner = new Scanner(System.in);
+public class SupplierManager extends Manager {
     private final SupplierInformation supplierInfo;
 
-    public SupplierManager(SupplierInformation supplierInfo) {
+    public SupplierManager(SupplierInformation supplierInfo, Scanner scanner) {
+        super(scanner);
         this.supplierInfo = supplierInfo;
     }
 
+    @Override
     public void run() {
         while (true) {
             System.out.println("\n--- Supplier Management ---");
@@ -46,7 +47,7 @@ public class SupplierManager {
         System.out.println("\n--- Suppliers ---");
         for (int i = 0; i < supplierList.size(); i++) {
             Supplier s = supplierList.get(i);
-            System.out.println((i + 1) + ". " + s.getName() + " (" + s.getSupplierID() + ")");
+            System.out.println((i + 1) + ". " + s.getName() + " (" + s.getId() + ")");
             System.out.println("   " + s.getContactInfo());
         }
     }
@@ -112,26 +113,15 @@ public class SupplierManager {
         String newName = requestUpdate("Name",s.getName());
         if(newName != null) s.setName(newName);
 
-        String newEmail = requestUpdate("Email",s.getContactInfo(Supplier.ContactDetails.EMAIL));
+        String newEmail = requestUpdate("Email",s.getIndividualContactInfo(Supplier.ContactDetails.EMAIL));
         if(newEmail != null) s.updateContactInfo().setEmail(newEmail);
 
-        String newPhone = requestUpdate("Phone Number",s.getContactInfo(Supplier.ContactDetails.PHONE));
+        String newPhone = requestUpdate("Phone Number",s.getIndividualContactInfo(Supplier.ContactDetails.PHONE));
         if(newPhone != null) s.updateContactInfo().setPhoneNumber(newPhone);
 
-        String newAddress = requestUpdate("Address",s.getContactInfo(Supplier.ContactDetails.ADDRESS));
+        String newAddress = requestUpdate("Address",s.getIndividualContactInfo(Supplier.ContactDetails.ADDRESS));
         if(newAddress != null) s.updateContactInfo().setAddress(newAddress);
 
         System.out.println("Supplier updated.");
-    }
-
-    public int promptForInteger() {
-        while (true) {
-            try {
-                return Integer.parseInt(scanner.nextLine());
-
-            }catch (NumberFormatException error) {
-                System.out.println("Invalid number. Please enter a valid decimal number.");
-            }
-        }
     }
 }

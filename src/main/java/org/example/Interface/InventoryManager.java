@@ -1,41 +1,20 @@
 package org.example.Interface;
 
 import org.example.Database.Inventory;
-import org.example.Supplier.Product;
+import org.example.ProductManagement.Product;
 
 import java.util.Map;
 import java.util.Scanner;
 
-public class InventoryManager {
-    private final Scanner scanner = new Scanner(System.in);
+public class InventoryManager extends Manager {
     private final Inventory inventory;
 
-    public InventoryManager(Inventory inventory) {
+    public InventoryManager(Inventory inventory, Scanner scanner) {
+        super(scanner);
         this.inventory = inventory;
     }
 
-    public double promptForDouble() {
-        while (true) {
-            try {
-                return Double.parseDouble(scanner.nextLine());
-
-            }catch (NumberFormatException error) {
-                System.out.println("Invalid number. Please enter a valid decimal number.");
-            }
-        }
-    }
-
-    public int promptForInteger() {
-        while (true) {
-            try {
-                return Integer.parseInt(scanner.nextLine());
-
-            }catch (NumberFormatException error) {
-                System.out.println("Invalid number. Please enter a valid decimal number.");
-            }
-        }
-    }
-
+    @Override
     public void run() {
         while (true) {
             System.out.println("\n--- Inventory Management ---");
@@ -73,7 +52,7 @@ public class InventoryManager {
         }
     }
 
-    private void addProduct() {
+    void addProduct() {
 
         double price;
         int quantity;

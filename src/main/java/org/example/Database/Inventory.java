@@ -1,6 +1,6 @@
 package org.example.Database;
 
-import org.example.Supplier.Product;
+import org.example.ProductManagement.Product;
 
 import java.util.ArrayList;
 import java.util.HashMap;

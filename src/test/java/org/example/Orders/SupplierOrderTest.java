@@ -1,9 +1,8 @@
-package org.example.Supplier;
+package org.example.Orders;
 
-import org.example.Supplier.Product;
-import org.example.Supplier.Supplier;
-import org.example.Supplier.SupplierOrder;
-import org.example.Supplier.SupplierOrderProduct;
+import org.example.People.Supplier;
+import org.example.ProductManagement.Product;
+import org.example.ProductManagement.SupplierOrderProduct;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

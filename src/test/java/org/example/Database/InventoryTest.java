@@ -1,6 +1,6 @@
 package org.example.Database;
 
-import org.example.Supplier.Product;
+import org.example.ProductManagement.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;

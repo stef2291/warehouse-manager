@@ -1,9 +1,9 @@
 package org.example.OrderProcessors;
-import org.example.Customer.Customer;
-import org.example.Customer.CustomerOrder;
-import org.example.Customer.CustomerOrderProduct;
+import org.example.People.Customer;
+import org.example.Orders.CustomerOrder;
+import org.example.ProductManagement.CustomerOrderProduct;
 import org.example.Database.Inventory;
-import org.example.Supplier.Product;
+import org.example.ProductManagement.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,7 +38,7 @@ public class SalesProcessorTest {
 
         assertEquals(15, inventory.getProduct("Hammer").getQuantity());
         assertEquals(50.0, salesProcessor.getTotalSalesRevenue(), 0.001);
-        assertEquals(CustomerOrder.Status.SHIPPED, order.getStatus());
+        assertEquals(CustomerOrder.Status.DELIVERED, order.getStatus());
         assertEquals(1, salesProcessor.getProcessedOrders().size());
     }
 

@@ -1,27 +1,18 @@
-package org.example.Supplier;
+package org.example.Orders;
 
-import java.time.LocalDate;
+import org.example.ProductManagement.SupplierOrderProduct;
+import org.example.People.Supplier;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class SupplierOrder {
-    private String orderId;
-    private Supplier supplier;
-    private List<SupplierOrderProduct> products = new ArrayList<>();
-    private LocalDate orderDate;
-    private Status status;
-    public enum Status {APPROVED, CANCELLED, PENDING,RECEIVED, OTHER}
+public class SupplierOrder extends Order {
+    private final Supplier supplier;
+    private final List<SupplierOrderProduct> products = new ArrayList<>();
 
     public SupplierOrder(Supplier supplier) {
-        this.orderId = UUID.randomUUID().toString();
+        super("PURCH-" + supplier.getId());
         this.supplier = supplier;
-        this.orderDate = LocalDate.now();
-        this.status = Status.PENDING;
-    }
-
-    public String getOrderId() {
-        return this.orderId;
     }
 
     public Supplier getSupplier() {
@@ -36,17 +27,8 @@ public class SupplierOrder {
         products.add(product);
     }
 
-
     public List<SupplierOrderProduct> getProducts() {
         return products;
-    }
-
-    public LocalDate getOrderDate() {
-        return this.orderDate;
-    }
-
-    public Status getStatus() {
-        return this.status;
     }
 
     public void setStatus(Status status) {
@@ -62,7 +44,7 @@ public class SupplierOrder {
         orderInfo.append("Products:\n");
 
         for (SupplierOrderProduct item : products) {
-            orderInfo.append("- ").append(item.getProduct())
+            orderInfo.append("- ").append(item.getProduct().getProductName())
                     .append(" (Qty: ").append(item.getQuantity()).append(")\n");
         }
 

@@ -1,6 +1,5 @@
-package org.example.Supplier;
-import org.example.Supplier.Product;
-import org.example.Supplier.Supplier;
+package org.example.People;
+import org.example.ProductManagement.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,14 +20,14 @@ public class SupplierTest {
         assertEquals("Primark", newSupplier.getName());
         assertEquals("Email : primark@gmail.com\n" +
                 "Address : 22 Primark Avenue\n" +
-                "Phone Number : 020111222", newSupplier.getContactInfo());
+                "Phone Number : 020111222", newSupplier.getContactInfo().toString());
     }
 
     void testSupplierCreation() {
         Supplier supplier = new Supplier("Primark", "0123456789", "primark@example.com", "123 High St");
         assertEquals("Primark", supplier.getName());
-        assertTrue(supplier.getSupplierID().length() > 0);
-        assertTrue(supplier.getContactInfo().contains("primark@example.com"));
+        assertTrue(supplier.getId().length() > 0);
+        assertTrue(supplier.getContactInfo().getEmail().contains("primark@example.com"));
     }
 
     @Test
@@ -48,8 +47,8 @@ public class SupplierTest {
 
     @Test
     void testGetContactInfoByType() {
-        assertEquals("email", supplier.getContactInfo(Supplier.ContactDetails.EMAIL));
-        assertEquals("0123", supplier.getContactInfo(Supplier.ContactDetails.PHONE));
-        assertEquals("addr", supplier.getContactInfo(Supplier.ContactDetails.ADDRESS));
+        assertEquals("email", supplier.getIndividualContactInfo(Supplier.ContactDetails.EMAIL));
+        assertEquals("0123", supplier.getIndividualContactInfo(Supplier.ContactDetails.PHONE));
+        assertEquals("addr", supplier.getIndividualContactInfo(Supplier.ContactDetails.ADDRESS));
     }
 }

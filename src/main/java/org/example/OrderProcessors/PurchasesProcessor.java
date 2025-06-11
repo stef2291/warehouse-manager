@@ -1,7 +1,10 @@
 package org.example.OrderProcessors;
 
 import org.example.Database.Inventory;
-import org.example.Supplier.*;
+import org.example.Orders.SupplierOrder;
+import org.example.ProductManagement.Product;
+import org.example.ProductManagement.SupplierOrderProduct;
+import org.example.People.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,11 +48,11 @@ public class PurchasesProcessor {
         processedOrders.add(order);
     }
 
-    private Product findProductByName(Supplier supplier, String productName) {
+    private Product findProductByName(Supplier supplier, Product product) {
         for (int i = 0; ; i++) {
             try {
                 Product p = supplier.getProductsList(i);
-                if (p.getProductName().equals(productName)) return p;
+                if (p.getProductName().equals(product.getProductName())) return p;
             } catch (IndexOutOfBoundsException e) {
                 return null;
             }

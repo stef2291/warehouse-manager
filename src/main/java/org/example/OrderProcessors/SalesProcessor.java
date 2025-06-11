@@ -1,9 +1,9 @@
 package org.example.OrderProcessors;
 
-import org.example.Customer.CustomerOrder;
-import org.example.Customer.CustomerOrderProduct;
+import org.example.Orders.CustomerOrder;
+import org.example.ProductManagement.CustomerOrderProduct;
 import org.example.Database.Inventory;
-import org.example.Supplier.Product;
+import org.example.ProductManagement.Product;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class SalesProcessor {
             processedOrders.add(order);
             return;
         }
-        order.setStatus(CustomerOrder.Status.SHIPPED);
+        order.setStatus(CustomerOrder.Status.DELIVERED);
         processedOrders.add(order);
     }
 

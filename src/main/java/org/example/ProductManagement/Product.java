@@ -1,4 +1,4 @@
-package org.example.Supplier;
+package org.example.ProductManagement;
 
 public class Product {
     private String productId;

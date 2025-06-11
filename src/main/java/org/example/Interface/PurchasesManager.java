@@ -3,25 +3,26 @@ package org.example.Interface;
 import org.example.Database.Inventory;
 import org.example.Database.SupplierInformation;
 import org.example.OrderProcessors.PurchasesProcessor;
-import org.example.Supplier.Product;
-import org.example.Supplier.Supplier;
-import org.example.Supplier.SupplierOrder;
-import org.example.Supplier.SupplierOrderProduct;
+import org.example.ProductManagement.Product;
+import org.example.People.Supplier;
+import org.example.Orders.SupplierOrder;
+import org.example.ProductManagement.SupplierOrderProduct;
 
 import java.util.Scanner;
 
-public class PurchasesManager {
-    private final Scanner scanner = new Scanner(System.in);
+public class PurchasesManager extends Manager {
     private final SupplierInformation supplierInfo;
     private final Inventory inventory;
     private final PurchasesProcessor purchasesProcessor;
 
-    public PurchasesManager(SupplierInformation supplierInfo, Inventory inventory) {
+    public PurchasesManager(SupplierInformation supplierInfo, Inventory inventory, Scanner scanner) {
+        super(scanner);
         this.inventory = inventory;
         this.supplierInfo = supplierInfo;
         this.purchasesProcessor = new PurchasesProcessor(inventory);
     }
 
+    @Override
     public void run() {
         while (true) {
             System.out.println("\n--- Purchase Management ---");
@@ -43,7 +44,7 @@ public class PurchasesManager {
         }
     }
 
-    private void createPurchaseOrder() {
+    void createPurchaseOrder() {
         var suppliers = supplierInfo.getAllSuppliers();
         if (suppliers.isEmpty()) {
             System.out.println("No suppliers available.");
@@ -117,16 +118,4 @@ public class PurchasesManager {
     private void viewTotalCost() {
         System.out.println("Total Purchase Cost: £" + purchasesProcessor.getTotalPurchaseCost());
     }
-
-    public int promptForInteger() {
-        while (true) {
-            try {
-                return Integer.parseInt(scanner.nextLine());
-
-            }catch (NumberFormatException error) {
-                System.out.println("Invalid number. Please enter a valid decimal number.");
-            }
-        }
-    }
-
 }

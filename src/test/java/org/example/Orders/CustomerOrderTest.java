@@ -1,7 +1,9 @@
-package org.example.Customer;
+package org.example.Orders;
 
-import org.example.Supplier.ContactInfo;
-import org.example.Supplier.Product;
+import org.example.ProductManagement.CustomerOrderProduct;
+import org.example.People.ContactInfo;
+import org.example.ProductManagement.Product;
+import org.example.People.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;

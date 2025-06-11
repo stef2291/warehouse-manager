@@ -47,22 +47,22 @@ public class UserInterface {
     }
 
     private void manageSuppliers() {
-        SupplierManager sm = new SupplierManager(supplierInformation);
+        SupplierManager sm = new SupplierManager(supplierInformation, scanner);
         sm.run();
     }
 
     private void manageInventory() {
-        InventoryManager im = new InventoryManager(inventory);
+        InventoryManager im = new InventoryManager(inventory, scanner);
         im.run();
     }
 
     private void processSupplierOrder() {
-        PurchasesManager pp = new PurchasesManager(supplierInformation ,inventory);
+        PurchasesManager pp = new PurchasesManager(supplierInformation ,inventory, scanner);
         pp.run();
     }
 
     private void processCustomerOrder() {
-        SalesManager sm = new SalesManager(inventory, salesProcessor);
+        SalesManager sm = new SalesManager(inventory, salesProcessor, scanner);
         sm.run();
     }
 

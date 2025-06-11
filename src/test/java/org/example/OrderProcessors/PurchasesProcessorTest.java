@@ -1,7 +1,10 @@
 package org.example.OrderProcessors;
 
 import org.example.Database.Inventory;
-import org.example.Supplier.*;
+import org.example.Orders.SupplierOrder;
+import org.example.ProductManagement.Product;
+import org.example.ProductManagement.SupplierOrderProduct;
+import org.example.People.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;

@@ -1,6 +1,6 @@
 package org.example.Database;
 
-import org.example.Supplier.Supplier;
+import org.example.People.Supplier;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,4 +22,5 @@ public class SupplierInformation {
     public List<Supplier> getAllSuppliers() {
         return new ArrayList<>(supplierList); //Defensive copy
     }
+
 }

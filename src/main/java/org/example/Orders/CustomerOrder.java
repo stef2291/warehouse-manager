@@ -1,31 +1,19 @@
-package org.example.Customer;
+package org.example.Orders;
 
-import java.time.LocalDate;
+import org.example.People.Customer;
+import org.example.ProductManagement.CustomerOrderProduct;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class CustomerOrder {
+public class CustomerOrder extends Order {
 
-    private String orderId;
-    private Customer customer;
-    private List<CustomerOrderProduct> products = new ArrayList<>();
-    private LocalDate orderDate;
-    private Status status;
-
-    public enum Status {
-        PENDING, APPROVED, SHIPPED, PARTIAL , DELIVERED, CANCELLED
-    }
+    private final Customer customer;
+    private final List<CustomerOrderProduct> products = new ArrayList<>();
 
     public CustomerOrder(Customer customer) {
-        this.orderId = UUID.randomUUID().toString();
+        super("SALE-" + customer.getId());
         this.customer = customer;
-        this.orderDate = LocalDate.now();
-        this.status = Status.PENDING;
-    }
-
-    public String getOrderId() {
-        return this.orderId;
     }
 
     public Customer getCustomer() {
@@ -44,13 +32,6 @@ public class CustomerOrder {
         products.remove(product);
     }
 
-    public LocalDate getOrderDate() {
-        return this.orderDate;
-    }
-
-    public Status getStatus() {
-        return this.status;
-    }
 
     public void setStatus(Status status) {
         this.status = status;
