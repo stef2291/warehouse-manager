@@ -1,7 +1,8 @@
-package org.example.Customer;
+package org.example.People;
 
-import org.example.Supplier.ContactInfo;
-import org.example.Supplier.Product;
+import org.example.Orders.CustomerOrder;
+import org.example.ProductManagement.CustomerOrderProduct;
+import org.example.ProductManagement.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +25,7 @@ public class CustomerTest {
     @Test
     void customerCreation() {
 
-        assertNotNull(customer.getCustomerId());
+        assertNotNull(customer.getId());
         assertEquals("John Doe", customer.getName());
         contact = customer.getContactInfo();
         assertEquals("john@example.com", contact.getEmail());

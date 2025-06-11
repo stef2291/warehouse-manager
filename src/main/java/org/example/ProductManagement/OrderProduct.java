@@ -1,15 +1,8 @@
-package org.example.Customer;
+package org.example.ProductManagement;
 
-import org.example.Supplier.Product;
-
-public class CustomerOrderProduct {
-    private Product product;
-    private int quantity;
-
-    public CustomerOrderProduct(Product product, int quantity) {
-        this.product = product;
-        this.quantity = quantity;
-    }
+public abstract class OrderProduct {
+    protected Product product;
+    protected int quantity;
 
     public Product getProduct() {
         return this.product;
@@ -31,4 +24,6 @@ public class CustomerOrderProduct {
     public String toString() {
         return product.getProductName() + " (Qty: " + quantity + ")";
     }
+
+
 }

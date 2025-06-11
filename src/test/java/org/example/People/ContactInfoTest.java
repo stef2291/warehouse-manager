@@ -1,6 +1,5 @@
-package org.example.Supplier;
+package org.example.People;
 
-import org.example.Supplier.ContactInfo;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

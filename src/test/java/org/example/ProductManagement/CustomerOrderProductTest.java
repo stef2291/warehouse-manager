@@ -1,6 +1,5 @@
-package org.example.Customer;
+package org.example.ProductManagement;
 
-import org.example.Supplier.Product;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

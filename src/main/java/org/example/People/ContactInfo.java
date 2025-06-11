@@ -1,4 +1,4 @@
-package org.example.Supplier;
+package org.example.People;
 
 public class ContactInfo {
     private String email;

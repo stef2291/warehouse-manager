@@ -1,9 +1,9 @@
 package org.example.OrderProcessors;
 
-import org.example.Customer.CustomerOrder;
-import org.example.Customer.CustomerOrderProduct;
+import org.example.Orders.CustomerOrder;
+import org.example.ProductManagement.CustomerOrderProduct;
 import org.example.Database.Inventory;
-import org.example.Supplier.Product;
+import org.example.ProductManagement.Product;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class SalesProcessor {
         }
 
         for (CustomerOrderProduct orderProduct : order.getProducts()) {
-            Product product = inventory.getProduct(orderProduct.getProduct().getProductId());
+            Product product = inventory.getProduct(orderProduct.getProduct().getProductName());
 
             if (product == null) {
                 System.out.println("Order failed: Product " + orderProduct.getProduct().getProductName() + " not recognised");
@@ -37,7 +37,7 @@ public class SalesProcessor {
             }
 
             int updatedQuantity = product.getQuantity() - orderProduct.getQuantity();
-            inventory.updateQuantity(product.getProductId(), updatedQuantity);
+            inventory.updateQuantity(product.getProductName(), updatedQuantity);
             totalSalesRevenue += product.getPrice() * orderProduct.getQuantity();
         }
 
@@ -49,7 +49,7 @@ public class SalesProcessor {
             processedOrders.add(order);
             return;
         }
-        order.setStatus(CustomerOrder.Status.SHIPPED);
+        order.setStatus(CustomerOrder.Status.DELIVERED);
         processedOrders.add(order);
     }
 

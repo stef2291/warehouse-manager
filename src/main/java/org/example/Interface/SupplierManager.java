@@ -1,14 +1,19 @@
 package org.example.Interface;
-import org.example.Supplier.Supplier;
+import org.example.Database.SupplierInformation;
+import org.example.People.Supplier;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SupplierManager {
-    private final Scanner scanner = new Scanner(System.in);
-    private final List<Supplier> supplierList= new ArrayList<>();
+public class SupplierManager extends Manager {
+    private final SupplierInformation supplierInfo;
 
+    public SupplierManager(SupplierInformation supplierInfo, Scanner scanner) {
+        super(scanner);
+        this.supplierInfo = supplierInfo;
+    }
+
+    @Override
     public void run() {
         while (true) {
             System.out.println("\n--- Supplier Management ---");
@@ -33,6 +38,7 @@ public class SupplierManager {
     }
 
     private void viewSuppliers() {
+        List<Supplier> supplierList = supplierInfo.getAllSuppliers();
         if (supplierList.isEmpty()) {
             System.out.println("No suppliers found.");
             return;
@@ -41,7 +47,7 @@ public class SupplierManager {
         System.out.println("\n--- Suppliers ---");
         for (int i = 0; i < supplierList.size(); i++) {
             Supplier s = supplierList.get(i);
-            System.out.println((i + 1) + ". " + s.getName() + " (" + s.getSupplierID() + ")");
+            System.out.println((i + 1) + ". " + s.getName() + " (" + s.getId() + ")");
             System.out.println("   " + s.getContactInfo());
         }
     }
@@ -57,22 +63,24 @@ public class SupplierManager {
         String address = scanner.nextLine();
 
         Supplier supplier = new Supplier(name, phone, email, address);
-        supplierList.add(supplier);
+        supplierInfo.addSupplier(supplier);
         System.out.println("Supplier added: " + supplier.getName());
     }
 
     private void deleteSupplier() {
         viewSuppliers();
+        List<Supplier> supplierList = supplierInfo.getAllSuppliers();
         if (supplierList.isEmpty()) return;
 
         System.out.print("Enter supplier number to delete: ");
-        int index = Integer.parseInt(scanner.nextLine()) - 1;
+        int index = promptForInteger() - 1;
         if (index < 0 || index >= supplierList.size()) {
             System.out.println("Invalid index.");
             return;
         }
 
         Supplier removed = supplierList.remove(index);
+        supplierInfo.removeSupplier(index);
         System.out.println("Removed supplier: " + removed.getName());
     }
 
@@ -89,10 +97,12 @@ public class SupplierManager {
 
     private void modifySupplier() {
         viewSuppliers();
+        List<Supplier> supplierList = supplierInfo.getAllSuppliers();
+
         if (supplierList.isEmpty()) return;
 
         System.out.print("Enter supplier number to modify: ");
-        int index = Integer.parseInt(scanner.nextLine()) - 1;
+        int index = promptForInteger() - 1;
         if (index < 0 || index >= supplierList.size()) {
             System.out.println("Invalid index.");
             return;
@@ -103,13 +113,13 @@ public class SupplierManager {
         String newName = requestUpdate("Name",s.getName());
         if(newName != null) s.setName(newName);
 
-        String newEmail = requestUpdate("Email",s.getContactInfo(Supplier.ContactDetails.EMAIL));
+        String newEmail = requestUpdate("Email",s.getIndividualContactInfo(Supplier.ContactDetails.EMAIL));
         if(newEmail != null) s.updateContactInfo().setEmail(newEmail);
 
-        String newPhone = requestUpdate("Phone Number",s.getContactInfo(Supplier.ContactDetails.PHONE));
+        String newPhone = requestUpdate("Phone Number",s.getIndividualContactInfo(Supplier.ContactDetails.PHONE));
         if(newPhone != null) s.updateContactInfo().setPhoneNumber(newPhone);
 
-        String newAddress = requestUpdate("Address",s.getContactInfo(Supplier.ContactDetails.ADDRESS));
+        String newAddress = requestUpdate("Address",s.getIndividualContactInfo(Supplier.ContactDetails.ADDRESS));
         if(newAddress != null) s.updateContactInfo().setAddress(newAddress);
 
         System.out.println("Supplier updated.");

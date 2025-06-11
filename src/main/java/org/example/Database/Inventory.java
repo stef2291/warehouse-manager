@@ -1,6 +1,6 @@
 package org.example.Database;
 
-import org.example.Supplier.Product;
+import org.example.ProductManagement.Product;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,18 +8,23 @@ import java.util.Map;
 import java.util.List;
 
 public class Inventory {
-    private Map<String, Product> productTracker = new HashMap<>();
+    private final Map<String, Product> productTracker = new HashMap<>();
 
     public void addProduct(Product product) {
-        productTracker.put(product.getProductId(), product);
+        String productName = product.getProductName();
+        if(productTracker.containsKey(productName)) {
+            System.out.println("Product " + productName + " already exists, select modify if you would like to modify the existing entry");
+            return;
+        }
+        productTracker.put(productName, product);
     }
 
-    public Product getProduct(String productId) {
-        return productTracker.get(productId);
+    public Product getProduct(String productName) {
+        return productTracker.get(productName);
     }
 
-    public void updateQuantity(String productId, int quantity) {
-        Product product = productTracker.get(productId);
+    public void updateQuantity(String productName, int quantity) {
+        Product product = productTracker.get(productName);
         if (product != null) {
             product.setQuantity(quantity);
         }
