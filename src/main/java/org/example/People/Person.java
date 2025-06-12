@@ -27,7 +27,12 @@ public class Person {
         return this.contactInfo;
     }
 
-    public String getIndividualContactInfo(Supplier.ContactDetails type) {
+
+    public ContactInfo updateContactInfo() {
+        return this.contactInfo;
+    }
+
+    public String getIndividualContactInfo(Person.ContactDetails type) {
         return switch (type) {
             case EMAIL -> this.contactInfo.getEmail();
             case PHONE -> this.contactInfo.getPhoneNumber();
