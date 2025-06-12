@@ -15,11 +15,6 @@ public class Supplier extends Person {
         this.contactInfo = new ContactInfo(email, phoneNumber, address);
     }
 
-    public ContactInfo updateContactInfo() {
-        return this.contactInfo;
-    }
-
-
     public Product getProductsList(int i) {
         return availableProducts.get(i);
     }
